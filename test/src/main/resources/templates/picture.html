@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.4.1.js"></script>
+    <script>
+        $(function () {
+            $('#btn1').click(function () {
+                $.ajax({
+                    url:"getpic",
+                    type:"POST",
+                    dataType:"json",
+                    success:function (data) {
+                        $('#img1').attr("src",data.picture);
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+<input type="button" id="btn1" value="获取图片"/>
+<img src="https://img.alicdn.com/imgextra/i3/1714128138/O1CN01fPQo2v29zFl4VCTE2_!!1714128138.jpg" alt="默认图片" id="img1">
+</body>
+</html>

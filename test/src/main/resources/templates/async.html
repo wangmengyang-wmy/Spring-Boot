@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>异步请求处理</title>
+    <script src="jquery-3.4.1.js"></script>
+    <script>
+        function fun(){
+            $('#btn2').val("异步");
+        }
+        $(function(){
+            $('#btn1').click(function(){
+                var username=$('#username').text();
+                var password=$('#password').text();
+                $.ajax({
+                    type: "POST",
+                    url: "testasync",
+                    data: '{"username":"'+username+'","password":"'+password+'"}',
+                    dataType: "json",
+                    contentType:"application/json",
+                    async: true,
+                    success: function(data,textStatus){
+                        $('#div1').text(data.username+":"+data.password);
+                        alert(textStatus);
+                        $.each(data,function (key,value) {
+                            console.log(key);
+                            console.log(value);
+                        });
+                    }
+                });
+            fun();
+            });
+            $('#btn3').click(function () {
+                $(this).val("异步");
+            })
+        });
+    </script>
+</head>
+<body>
+<input type="button" id="btn1" value="发送"/>
+<input type="button" id="btn2" value="测试异步1"/>
+<input type="button" id="btn3" value="测试异步2"/>
+<div id="div1"></div>
+<div id="username">张三</div>
+<div id="password">hello1234!</div>
+</body>
+</html>

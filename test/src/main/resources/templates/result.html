@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>结果</title>
+</head>
+<body>
+结果
+<div th:object="${user}">
+    <div th:text="*{username}" style="display: none"></div>
+    <div th:text="*{password}"></div>
+</div>
+</body>
+</html>

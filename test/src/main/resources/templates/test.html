@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+    <script src="jquery-3.4.1.js"></script>
+    <script>
+        $(function(){
+            $('#btn1').click(function(){
+                $.ajax({
+                    type: "POST",
+                    url: "getPassword",
+                    data: '{"password":"hello1234!"}',
+                    dataType: "json",
+                    contentType:"application/json",
+                    success: function(data){
+                        fun(data.AESEncode);
+                    }
+                });
+            });
+        });
+        function fun(pwd){
+            $.ajax({
+                type: "POST",
+                url: "result",
+                data: '{"password":"'+pwd+'"}',
+                dataType: "json",
+                contentType:"application/json",
+                success: function(data){
+                    alert("解密后的密码"+data.AESDncode);
+                    location.href="result.html";
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="发送" id="btn1" onclick="getpwd()"/>
+</body>
+</html>
